@@ -1,7 +1,9 @@
+import { UploadService } from './upload.service';
+import { getStorage } from 'firebase/storage';
 import { Book } from './../models/book.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { getDatabase, onValue, ref, set } from "firebase/database";
+import { getDatabase, onValue, ref, set, refFromURL } from "firebase/database";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class BooksService {
   books: Book[] = [];
   booksSubject = new Subject<Book[]>();
 
-  constructor() { }
+  constructor(private uploadService: UploadService) { }
 
   emitBooks() {
     this.booksSubject.next(this.books);
@@ -62,6 +64,7 @@ export class BooksService {
   }
 
   removeBook(book: Book) {
+    this.uploadService.deleteFile(book);
     const bookIndexToRemove = this.books.findIndex(
       (bookElement) => {
         if(bookElement === book) {

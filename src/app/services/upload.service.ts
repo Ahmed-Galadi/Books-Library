@@ -1,5 +1,6 @@
+import { Book } from './../models/book.model';
 import { Injectable } from '@angular/core';
-import { getStorage, ref ,uploadBytesResumable ,getDownloadURL } from "firebase/storage";
+import { getStorage, ref ,uploadBytesResumable ,getDownloadURL, deleteObject } from "firebase/storage";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class UploadService {
   constructor() { }
 
   uploadFile(file: File) {
-    return new Promise(
+    return new Promise<string>(
       (resolve, reject) => {
         const almostUniqueFileName = Date.now().toString();
         const storage = getStorage();
@@ -26,9 +27,27 @@ export class UploadService {
           },
           () => {
             resolve(getDownloadURL(upload.snapshot.ref));
+            console.log('Cover Downloaded !!');
           }
         );
       }
     );
+  }
+
+  deleteFile(book: Book) {
+     if(book.cover) {
+      const storage = getStorage();
+      const CoverStoragRef = ref(storage, book.cover);
+
+      deleteObject(CoverStoragRef).then(
+        () => {
+          console.log('cover deleted !!');
+        }
+      ).catch(
+        (error) => {
+          console.log('Error!! Faile To Delete File: ' + error);
+        }
+      );
+    }
   }
 }
