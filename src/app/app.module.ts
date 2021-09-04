@@ -1,3 +1,4 @@
+import { UploadService } from './services/upload.service';
 import { BooksService } from './services/books.service';
 import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
@@ -35,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     AuthService,
     BooksService,
-    AuthGuatdService
+    AuthGuatdService,
+    UploadService
   ],
   bootstrap: [AppComponent]
 })
