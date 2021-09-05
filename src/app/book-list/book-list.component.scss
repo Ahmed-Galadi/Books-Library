@@ -1,3 +1,27 @@
 h2 {
   color: gray;
 }
+
+.book {
+  &:hover {
+    background-color: #eff7ff;
+    transform: scale(1.05);
+    transition: all 0.3s ease-out;
+  }
+  .delete {
+    border-radius: 50%;
+    border: none;
+    background-color: #e2e2e2;
+    &:hover {
+      color: #ffd5d5;
+      background-color: #ff6161;
+      transform: scale(1.01);
+      box-shadow: 0px 0px 7px 1px #7b7b7b;
+      transition: all 0.3s ease-out;
+    }
+  }
+}
+
+.new-book {
+  border-radius: 0;
+}
