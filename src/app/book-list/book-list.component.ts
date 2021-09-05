@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Book } from '../models/book.model';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { faTrash  } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-book-list',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./book-list.component.scss']
 })
 export class BookListComponent implements OnInit, OnDestroy {
+
+  trash = faTrash;
 
   books: Book[] = []
   booksSubscription!: Subscription;
