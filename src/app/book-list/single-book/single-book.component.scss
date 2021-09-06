@@ -1,0 +1,12 @@
+.view {
+  text-align: center;
+  img {
+    border: 1px solid #cacaca;
+    border-radius: 10px;
+    &:hover {
+      border: 0.5px solid #7c7c7cc4;
+      transform: scale(1.08);
+      transition: all 0.5s ease-out;
+    }
+  }
+}

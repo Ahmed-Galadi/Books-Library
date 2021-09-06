@@ -3,6 +3,7 @@ h2 {
 }
 
 .book {
+  max-width: 500px;
   &:hover {
     background-color: #eff7ff;
     transform: scale(1.05);
